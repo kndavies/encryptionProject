@@ -17,7 +17,6 @@ public abstract class Cryption {
 	private static void fillSingleDigitASCII() {
 		for (int i = 1; i <= 9; i++) {
 			int result = i * 10;
-			;
 			hash.put((char) i, (char) (result));
 		}
 	}
