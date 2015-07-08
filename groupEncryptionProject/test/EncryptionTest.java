@@ -42,16 +42,16 @@ public class EncryptionTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testIfUserEntersASCIIBetween1and31ReturnException() {
-		char c = (char) 31;
+	public void testIfUserEntersASCIILessThanOneReturnException() {
+		char c = (char) 0;
 		String s = Character.toString(c);
 		Encryption.encrypt(s);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testIfUserContainsAnASCIIBetween1and31ReturnException() {
+	public void testIfUserContainsAnASCIILessThanOneReturnException() {
 		String s = "Grand ";
-		char c = (char) 31;
+		char c = (char) 0;
 		s += Character.toString(c);
 		s += "Circus";
 		Encryption.encrypt(s);
@@ -72,5 +72,4 @@ public class EncryptionTest {
 		s += "Circus";
 		Encryption.encrypt(s);
 	}
-
 }

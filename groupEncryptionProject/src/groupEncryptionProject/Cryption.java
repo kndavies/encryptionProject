@@ -7,43 +7,48 @@ public abstract class Cryption {
 	protected static boolean created = false;
 
 	protected static void createCryption() {
-		fillUpperCaseLetters();
-		fillLowerCaseLetters();
-		fillRemainingLowerCaseLetters();
+		fillSingleDigitASCII();
+		fillDoubleDigitASCII();
+		fillASCIIBetween100And122();
+		fillASCIIBetween122And126();
 		created = true;
 	}
 
-	private static void fillUpperCaseLetters() {
-		for (int i = 32; i <= 99; i++) {
+	private static void fillSingleDigitASCII() {
+		for (int i = 1; i <= 9; i++) {
+			int result = i * 10;
+			;
+			hash.put((char) i, (char) (result));
+		}
+	}
+
+	private static void fillDoubleDigitASCII() {
+		for (int i = 10; i <= 99; i++) {
 			int reverse = reverseInt(i);
 			hash.put((char) i, (char) (reverse));
 		}
 	}
 
-	private static void fillLowerCaseLetters() {
+	private static void fillASCIIBetween100And122() {
 		for (int i = 100; i <= 122; i++) {
 			hash.put((char) i, (char) (i + 4));
 		}
 	}
 
-	private static void fillRemainingLowerCaseLetters() {
+	private static void fillASCIIBetween122And126() {
 		for (int i = 123; i <= 126; i++) {
 			hash.put((char) i, (char) (i - 23));
 		}
 	}
 
 	public static int reverseInt(int input) {
-		long reversedNum = 0;
+		int reversedNum = 0;
 
-		int input_long = input;
+		int inputInt = input;
 
-		while (input_long != 0) {
-			reversedNum = reversedNum * 10 + input_long % 10;
-			input_long = input_long / 10;
-		}
-
-		if (reversedNum > Integer.MAX_VALUE || reversedNum < Integer.MIN_VALUE) {
-			throw new IllegalArgumentException();
+		while (inputInt != 0) {
+			reversedNum = reversedNum * 10 + inputInt % 10;
+			inputInt = inputInt / 10;
 		}
 		return (int) reversedNum;
 	}
